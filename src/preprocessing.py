@@ -9,18 +9,18 @@ def load_data(filepath):
 
 
 def create_preprocessor():
-    # Определяем числовые и категориальные признаки
+
     numeric_features = ['Processor_Speed', 'RAM_Size', 'Storage_Capacity', 'Screen_Size', 'Weight']
     categorical_features = ['Brand']
 
-    # Создаем трансформеры
+
     numeric_transformer = Pipeline(steps=[
         ('scaler', StandardScaler())])
 
     categorical_transformer = Pipeline(steps=[
         ('onehot', OneHotEncoder(handle_unknown='ignore'))])
 
-    # Объединяем трансформеры
+
     preprocessor = ColumnTransformer(
         transformers=[
             ('num', numeric_transformer, numeric_features),

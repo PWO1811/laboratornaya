@@ -5,7 +5,6 @@ import pandas as pd
 
 app = FastAPI()
 
-# Загрузка модели при старте
 model = joblib.load('models/model.joblib')
 
 
@@ -20,10 +19,8 @@ class LaptopFeatures(BaseModel):
 
 @app.post("/predict")
 def predict(features: LaptopFeatures):
-    # Конвертируем входные данные в DataFrame
     input_data = pd.DataFrame([features.dict()])
 
-    # Делаем предсказание
     prediction = model.predict(input_data)[0]
 
     return {"predicted_price": prediction}
